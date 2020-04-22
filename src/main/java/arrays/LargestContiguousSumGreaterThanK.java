@@ -1,6 +1,6 @@
 package arrays;
 
-public class LargestContiguousSUmGreaterThanK {
+public class LargestContiguousSumGreaterThanK {
     public static SubArray execute(int[] arr, int k) {
         int localMax = arr[0];
         int globalMax = arr[0];

@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
-public class GraphOnList implements Graph{
+public class GraphOnList implements Graph {
     ArrayList<LinkedList<Integer>> vertices;
 
     public GraphOnList(int size) {
