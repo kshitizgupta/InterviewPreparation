@@ -1,4 +1,6 @@
-package arrays;
+package arrays.rotated;
+
+import arrays.BinarySearch;
 
 public class SearchInRotatedSortedArr {
     public int search(int[] nums, int target) {
