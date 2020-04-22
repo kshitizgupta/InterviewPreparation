@@ -1,4 +1,4 @@
-package arrays;
+package heap;
 
 // Java program to find the k-th largest sum of subarray
 
