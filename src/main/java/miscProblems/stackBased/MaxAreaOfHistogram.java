@@ -1,4 +1,4 @@
-package miscProblems.usingStack;
+package miscProblems.stackBased;
 
 import java.util.Stack;
 
