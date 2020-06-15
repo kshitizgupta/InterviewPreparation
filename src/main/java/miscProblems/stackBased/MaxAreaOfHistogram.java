@@ -71,5 +71,6 @@ public class MaxAreaOfHistogram {
         System.out.println("Max Area = " + getMaxArea(new int[]{6, 2, 5, 4, 5, 1, 6}));
         System.out.println("Max Area = " + getMaxArea(new int[]{2, 5, 3, 2}));
         System.out.println("Max Area = " + getMaxArea(new int[]{4, 2, 1}));
+        System.out.println("Max Area = " + getMaxArea(new int[]{11, 11, 10, 10, 10}));
     }
 }
