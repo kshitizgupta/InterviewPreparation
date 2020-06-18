@@ -38,8 +38,8 @@ Synchronizing class will lock it’s object too, that’s why we should always c
 block of code.
 
 ###### Why not use String for mutex?
-String is not a very good candidate to be used with synchronized keyword because they are stored in string pool and we 
-don’t want to lock a string that might be getting used by another piece of code
+String is not a very good candidate to be used with synchronized keyword because they are stored in com.string pool and we 
+don’t want to lock a com.string that might be getting used by another piece of code
 
 ###### Why not use synchronized on the method itself?
 That would slower the performance even after the instance is initialized. Only on thread at a given time will be able to 
