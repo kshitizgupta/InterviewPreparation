@@ -1,21 +1,18 @@
 package com.trees;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class BinarySearchTree {
+public class BinarySearchTree<T extends Comparable<T>> {
 
-    public static Node insert(Node root, int data) {
-        if(root == null) {
-            return new Node(data);
-        } else {
-            Node cur;
-            if(data <= root.data) {
-                cur = insert(root.left, data);
-                root.left = cur;
-            } else {
-                cur = insert(root.right, data);
-                root.right = cur;
-            }
-            return root;
-        }
+    private Node root;
+
+    public void insert(T val) {
+
+    }
+
+    public static void main(String[] args) {
+
     }
 }

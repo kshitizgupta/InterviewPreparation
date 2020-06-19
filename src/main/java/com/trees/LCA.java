@@ -4,13 +4,13 @@ public class LCA {
     public static void main(String[] args) {
         Node root = null;
 
-        root = BinarySearchTree.insert(root, 5);
-        root = BinarySearchTree.insert(root, 3);
-        root = BinarySearchTree.insert(root, 8);
-        root = BinarySearchTree.insert(root, 2);
-        root = BinarySearchTree.insert(root, 4);
-        root = BinarySearchTree.insert(root, 6);
-        root = BinarySearchTree.insert(root, 7);
+        root = insert(root, 5);
+        root = insert(root, 3);
+        root = insert(root, 8);
+        root = insert(root, 2);
+        root = insert(root, 4);
+        root = insert(root, 6);
+        root = insert(root, 7);
 
         System.out.println(lca(root, 3, 7));
     }
@@ -32,5 +32,21 @@ public class LCA {
             return lca(node.right, v1, v2);
         }
         return null;
+    }
+
+    public static Node insert(Node root, int data) {
+        if(root == null) {
+            return new Node(data);
+        } else {
+            Node cur;
+            if(data <= root.data) {
+                cur = insert(root.left, data);
+                root.left = cur;
+            } else {
+                cur = insert(root.right, data);
+                root.right = cur;
+            }
+            return root;
+        }
     }
 }
