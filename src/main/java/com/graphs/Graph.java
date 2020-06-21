@@ -1,13 +1,21 @@
 package com.graphs;
 
-public interface Graph {
-    void addEdge(Integer src, Integer dest);
+import java.util.List;
 
-    void printDFS(int startingVertex);
+public interface Graph<T> {
+    void addEdge(T src, T dest);
 
-    void printDFSRecur(int startingVertex);
+    //    void printDFS(int startingVertex);
 
-    void printBFS(int startingVertex);
+    //    void printDFSRecur(int startingVertex);
+
+    //    void printBFS(int startingVertex);
+
+    List<Node<T>> getAdjacent(T vertex);
+
+    Node<T> getNode(T vertex);
+
+    List<Node<T>> traverse(T startingNode, GraphTraversal<T> graphTraversal);
 
     boolean isCyclic();
 
