@@ -23,6 +23,7 @@ public class GraphImpl<T> implements Graph<T> {
         }
         if (!nodes.containsKey(dest)) {
             nodes.put(dest, destN);
+            map.put(dest, new ArrayList<>());
         }
         if (!map.containsKey(src)) {
             map.put(src, new ArrayList<>());
