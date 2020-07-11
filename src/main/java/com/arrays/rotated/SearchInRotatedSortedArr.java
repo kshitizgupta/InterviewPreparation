@@ -6,7 +6,7 @@ public class SearchInRotatedSortedArr {
     public int search(int[] nums, int target) {
         int pivotIndex = findPivot(nums, 0, nums.length);
 
-        System.out.println("Pivot Index = "+ pivotIndex);
+        System.out.println("Pivot Index = " + pivotIndex);
 
         if (nums[0] <= target && target <= nums[pivotIndex]) {
             return BinarySearch.searchBS(nums, 0, pivotIndex, target);
@@ -14,7 +14,6 @@ public class SearchInRotatedSortedArr {
             return BinarySearch.searchBS(nums, pivotIndex + 1, nums.length - 1, target);
         }
     }
-
 
     private int findPivot(int[] arr, int start, int end) {
         if (start >= end) return -1;

@@ -37,6 +37,19 @@ public class CountMinSwapsToSort1ToNUnOrderedArray {
         return count;
     }
 
+    static int minSwaps(int[] arr) {
+        int count = 0;
+        int i = 0;
+        while (i < arr.length) {
+            if (arr[i] - 1 != i) {
+                swap(arr, i, arr[i] - 1);
+                count++;
+            } else
+                i++;
+        }
+        return count;
+    }
+
     static void swap(int[] arr, int i, int j) {
         int buff = arr[i];
         arr[i] = arr[j];
@@ -45,11 +58,20 @@ public class CountMinSwapsToSort1ToNUnOrderedArray {
 
     public static void main(String[] args) {
         test(new int[]{7, 1, 3, 2, 4, 5, 6});
+        test1(new int[]{7, 1, 3, 2, 4, 5, 6});
+
         test(new int[]{1, 3, 5, 2, 4, 6, 7});
+        test1(new int[]{1, 3, 5, 2, 4, 6, 7});
+
         test(new int[]{4, 3, 1, 2});
+        test1(new int[]{4, 3, 1, 2});
     }
 
     public static void test(int[] arr) {
         System.out.println("Min swaps = " + minimumSwaps(arr));
+    }
+
+    public static void test1(int[] arr) {
+        System.out.println("Min swaps = " + minSwaps(arr));
     }
 }

@@ -47,7 +47,7 @@ access the function and rest will be locked.
 
 ###### What is the use of volatile keyword?
 instance = new Singleton() are actually three step instructions. construct empty object with all the fields as null, 
-assign to instance and cflush the values. As per java semantics, its not guaranteed that these 3 will occur in saem order
+assign to instance and flush the values. As per java semantics, its not guaranteed that these 3 will occur in same order
 JVM may reorder the instructions. So say thread1 creates empty object an assigns it to instance, At the same time if 
 thread2 gets into the function, for it instance == null check will fail and an object will null values will be returned
 which is obviously not expected.
