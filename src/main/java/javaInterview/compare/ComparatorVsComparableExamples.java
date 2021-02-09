@@ -51,6 +51,10 @@ public class ComparatorVsComparableExamples implements Comparable<ComparatorVsCo
 
         Comparator<Employee> ageComparator = Comparator.comparingInt(Employee::getAge);
         Comparator<Employee> nameComparator = Comparator.comparing(Employee::getName);
+        /*
+        Could also be written like this
+        Comparator<Employee> nameComparator = (s1, s2) -> s1.getName().compareTo(s2.getName());
+        */
 
         arrList.sort(ageComparator);
         System.out.println(arrList);

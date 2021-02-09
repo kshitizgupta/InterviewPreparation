@@ -1,5 +1,7 @@
 package javaInterview.compare;
 
+import java.util.Objects;
+
 public class Employee implements Comparable<Employee> {
     private int id;
     private String name;
@@ -35,6 +37,22 @@ public class Employee implements Comparable<Employee> {
     }
 
     @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id &&
+            age == employee.age &&
+            salary == employee.salary &&
+            Objects.equals(name, employee.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, age, salary);
+    }
+
+    @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Employee{");
         sb.append("id=").append(id);
@@ -44,4 +62,5 @@ public class Employee implements Comparable<Employee> {
         sb.append('}');
         return sb.toString();
     }
+
 }
