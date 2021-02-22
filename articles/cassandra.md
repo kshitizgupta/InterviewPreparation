@@ -5,18 +5,18 @@ Data is automatically replicated to multiple nodes for fault-tolerance. Replicat
 data centres is supported. Failed nodes can be replaced with no down time. You dont ever lose data
 
 ## Performant
-Its super fast. With no single point of failure. No reliance on master node or anthing as every node is 
+Its super fast. With no single point of failure. No reliance on master node or anything as every node is 
 independent of each other. Every node is identical.
 
 ## Scalable
-Some of the lasrgest prod deployment includes apples with over 75000 nodes storing over 10PB of data
-Netflix with about 2500 nodes with 450TB of data 1trillion requests per day.
+Some of the largest prod deployment includes apples with over 75000 nodes storing over 10PB of data
+Netflix with about 2500 nodes with 450TB of data and 1 trillion requests per day.
 
 ## Durable
 Its durable. We dont lose the data even if a data centre goes down.
 
 ## Elastic
-Read and write throughputs increase linearly as new machines are added to the cluster with
+Read and write throughput increase linearly as new machines are added to the cluster with
 no downtime or interruptions to the application.
 
 # CAP Theorem
@@ -37,9 +37,9 @@ read returns you the latest written data.
 This condition states that the system does not fail regardless of if the messages are dropped
 or delayed in between the nodes in a system. It is made possible by sufficiently replicating data
 across combinations of nodes and networks. Function in case of network partition or failure
-A network partition when one node is not able to communicate to other nodes or set of nodes.
+A network partition occurs when one node is not able to communicate to other nodes or set of nodes.
 
-A system can have any two properties out of the three. Can't have all the three. In most systems we gotto have the 
+A system can have any two properties out of the three. Can't have all the three. In most systems we got to have the 
 partition tolerance as some of the node is bound to go down. So the choice is basically between consistency and 
 availability.
 
@@ -52,6 +52,22 @@ Cassandra offers different levels of consistency which is configurable.
 
 # How to model data in Cassandra?
 De-normalization and duplication of data is the accepted approach in Cassandra
+Queries drive data model design in Cassandra. If you're familiar with data modeling for relational databases, you're probably 
+used to thinking first about the entities and then about their relationships. When we design data models in Cassandra, we don't 
+start with entities. We start with the queries we want to run. Cassandra is optimized for fast writes and fast reads over very 
+large volumes of data. To achieve these levels of performance, Cassandra does things differently than relational databases. 
+Two big differences you'll notice right away are there are no joins and there's a lot of duplication of data. Joins can be time and 
+resource-consuming operations. Cassandra avoids those by duplicating data in rows of a table. This goes against the best practices 
+for relational data modeling. That's okay. Relational data modeling rules were designed to reduce the chance of introducing data 
+anomalies, like reporting an outdated address for a customer. When working with Cassandra, we trade higher performance with big data 
+for using extra storage space and risking some data anomalies. You might wonder, wouldn't we want to reduce the amount of storage we 
+use when working with big data? After all, duplicating data at large scales can lead to very large databases. This is true. We don't 
+want to waste space, but more importantly, we want to be able to respond to queries quickly. Cassandra is a good choice for a database 
+when your top priority is being able to write and read data quickly. Now, this does not mean we waste space with Cassandra. We should 
+use data types that are sufficient for what we need, but not more. If you're storing a large number of data points that could be stored 
+in a tinyint, which uses one byte, don't use a bigint, which uses eight bytes. Cassandra also is flexible enough to allow some useful 
+optimizations. For example, instead of storing an entire row each time a new set of server metrics come in, we can store those metrics 
+in a new column in an existing row. 
 
 #### Normalization 
 Dividing larger table into smaller ones or breaking into smaller tables to reduce duplicity of data is called normalization.
@@ -83,10 +99,14 @@ This is the **Query First Approach**. We should think about the queries we need 
 in our application and design the tables accordingly. Aim should be that a read query is answered
 by a reading a single table and partition. That's what will make the query absolutely efficient.
 
+We use denormalizing instead of joining and sorting in Cassandra. Denormalizing in Cassandra is done 
+in two ways :
+1. We keep redundant copies of data 
+2. We use collections to store multiple values instead of using a separate table.
 
 # Key Concepts
 ## Partition Rings And Token
-Optimal reads involve accessing as few nodes per request. To know exactly what node containsthe data 
+Optimal reads involve accessing as few nodes per request. To know exactly what node contains the data 
 we want, cassandra uses partitioning data on partition key. 
 The partition key is run through a hash function to generate a token. This token is used to identify
 the node on which the data is stored. We can imagine all the nodes arranged in a hypothetical ring
@@ -188,11 +208,29 @@ WITH CLUSTERING ORDER BY (author DESC, publisher ASC);`
 We should decide the order based on application requirements.
 
 ## Consistency Level
+
+Cassandra lets us specify how we want to handle consistency for read and write operations. For example, we could decide that 
+consistency is not important and we'll just take the results of the first read from a replica that returns. In other cases we 
+may want a majority of the replicas to report the same answer so we can be sure of the value. In some situations, which require 
+high consistency, we may want all replicas to be in sync. Here are some of the consistency levels that we can choose from. Whenever 
+the number of consistent reads or writes is reached, the IO operation succeeds.
+
 While writing, it represents the no of data to which data must be written atleast to and
 acknowledged to declare a write as successful.
 
 While reading, it represents the no of nodes which should respond to with data before I can
 mark a read as successful.
+
+ANY: - High availability low consistency
+
+TWO: two replicas return the same value
+
+Three: three replicas return the same value
+
+Quorum - a majority of replicas reutrn the same value
+
+All: high consistency and low availability
+
 
 PS: cassandra also looks at the timestamp of the data to decide the most recent data and 
 returns that.
@@ -203,7 +241,7 @@ Consistency Level Quorom defines that majority of nodes acknowledge to the reads
 Cassandra uses gossip protocol to discover node state for all nodes in a cluster. Nodes discover information
 about other nodes by exchanging state information about themselves and other nodes they know about. Nodes dont
 exchange information with every other node but only 3 nodes. This reduces network load and in a small period
-of time information about all the nodes is propogated throught the cluster. This facilitates failure detection.
+of time information about all the nodes is propagated through the cluster. This facilitates failure detection.
 
 # Bloom Filters
 This is a way to determine if a data set contains some data we are looking for or not. It answers in may exist or
