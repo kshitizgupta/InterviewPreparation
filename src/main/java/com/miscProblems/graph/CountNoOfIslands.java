@@ -1,4 +1,4 @@
-package com.miscProblems.graphBased;
+package com.miscProblems.graph;
 
 import java.util.Stack;
 

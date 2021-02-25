@@ -1,4 +1,4 @@
-package com.miscProblems.arrayBased;
+package com.miscProblems.array;
 
 /**
  * Brute force approach is we start at each element and iterate further to get all the

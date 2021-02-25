@@ -1,4 +1,4 @@
-package com.miscProblems.stackBased;
+package com.stack;
 
 import java.util.Stack;
 
