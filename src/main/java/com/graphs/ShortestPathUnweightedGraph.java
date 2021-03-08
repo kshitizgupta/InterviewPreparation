@@ -10,6 +10,21 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * Time Complexity
+ *
+ * V no of vertices
+ * Eav average edges with each vertex
+ * E total no of edges in graph = V*Eav
+ *
+ * The outer loop runs for a max of V times
+ * V * (O(1) + O(Eav) + O(1))
+ * V + V * Eav + V
+ * 2V + E(total number of edges in graph)
+ * V + E
+ *
+ * O(V + E)
+ */
 public class ShortestPathUnweightedGraph {
     public static List<Integer> solution(Map<Integer, List<Integer>> adjacencyMap, int src, int dest) {
         List<Integer> path = new ArrayList<>();
