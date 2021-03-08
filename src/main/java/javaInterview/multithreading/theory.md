@@ -1,18 +1,18 @@
 ### Thread Lifecycle
 
 ##### NEW
-A new thread begins its lifecyce in this state & remains here unti the program starts the thread
+A new thread begins its lifecycle in this state & remains here until the program starts the thread
 
 ##### RUNNABLE
 Once a newly born thread starts, the thread comes under runnable state. Remains in this state 
 until the execution starts
 
 ##### RUNNING
-In this state thread starts executing the run() method ad the yield() method can send them to go 
+In this state thread starts executing the run() method and the yield() method can send them to go 
 back to the runnable state
 
 ##### WAITING
-A thread enters this state when it is temporarily in an inactive state i.e. it is stull alie but is not
+A thread enters this state when it is temporarily in an inactive state i.e. it is still alive but is not
 eligible to run. It can be in waiting, sleeping or blocked state.
 
 ##### TERMINATED
