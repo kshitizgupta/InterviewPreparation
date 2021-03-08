@@ -54,20 +54,36 @@ public class ShortestPathUnweightedGraph {
         for (int i = 0; i < 8; i++) {
             adjacencyMap.put(i, new ArrayList<>());
         }
-        adjacencyMap.get(0).add(1);
-        adjacencyMap.get(0).add(3);
-        adjacencyMap.get(1).add(2);
-        adjacencyMap.get(3).add(4);
-        adjacencyMap.get(3).add(7);
-        adjacencyMap.get(4).add(5);
-        adjacencyMap.get(4).add(6);
-        adjacencyMap.get(4).add(7);
-        adjacencyMap.get(5).add(6);
-        adjacencyMap.get(6).add(7);
+        addEdge(adjacencyMap, 0,1);
+
+        addEdge(adjacencyMap, 0,3);
+
+        addEdge(adjacencyMap, 1,2);
+
+        addEdge(adjacencyMap, 3,4);
+
+        addEdge(adjacencyMap, 3,7);
+
+        addEdge(adjacencyMap, 4,5);
+
+        addEdge(adjacencyMap, 4,6);
+
+        addEdge(adjacencyMap, 4,7);
+
+        addEdge(adjacencyMap, 5,6);
+
+        addEdge(adjacencyMap, 6,7);
 
         System.out.println(solution(adjacencyMap, 0, 7));
         System.out.println(solution(adjacencyMap, 0, 6));
         System.out.println(solution(adjacencyMap, 0, 5));
         System.out.println(solution(adjacencyMap, 0, 2));
+        System.out.println(solution(adjacencyMap, 5, 2));
+    }
+
+    public static void addEdge(Map<Integer, List<Integer>> adj, int src, int dest) {
+        //For undirected graph adding 2 edges but for directed graph we should not do it
+        adj.get(src).add(dest);
+        adj.get(dest).add(src);
     }
 }
