@@ -21,7 +21,6 @@ public class DiffWaysToMakeThread {
         }
     }
 
-
     static class MyThreadRunnable implements Runnable {
         @Override
         public void run() {
@@ -57,16 +56,28 @@ public class DiffWaysToMakeThread {
 
         System.out.println("Submitting Runnable");
         Runnable myThreadRunnable = new MyThreadRunnable();
-        Thread t1 = new Thread(myThreadRunnable);
+        Thread t1 = new Thread(myThreadRunnable, "Runnable");
         t1.start();
         t1.join();
 
         System.out.println("Submitting Callable");
         Callable<Integer> myThreadCallable = new MyThreadCallable(3);
         final FutureTask<Integer> target = new FutureTask<>(myThreadCallable);
-        Thread t2 = new Thread(target);
+        Thread t2 = new Thread(target, "Callable");
         t2.start();
         t2.join();
+
+        System.out.println("using Lambda Runnable");
+        Thread t3 = new Thread(() -> {
+            System.out.println("Thread + " + Thread.currentThread().getName() + " running");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "UsingLambda");
+        t3.start();
+        t3.join();
 
         System.out.println("Using executor service");
         Callable<Integer> myThreadCallable1 = new MyThreadCallable(4);
