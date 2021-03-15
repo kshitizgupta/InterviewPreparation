@@ -3,14 +3,15 @@ package javaInterview.singleton;
 import java.io.Serializable;
 
 public class Singleton implements Serializable {
-    static private Singleton instance = null;
+    static private volatile Singleton instance = null;
     private static final Object mutex = new Object();
 
-    private Singleton(){
-        if(instance!=null){
+    private Singleton() {
+        if (instance != null) {
             throw new IllegalStateException("Illegal access of constructor");
         }
     }
+
     public static Singleton getInstance() {
         if (instance == null) {
             synchronized (mutex) {
@@ -28,7 +29,7 @@ public class Singleton implements Serializable {
         throw new CloneNotSupportedException();
     }
 
-    protected Object readResolve(){
+    protected Object readResolve() {
         return instance;
     }
 }
