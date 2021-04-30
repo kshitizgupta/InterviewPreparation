@@ -1,5 +1,11 @@
 package com.miscProblems.array;
 
+import java.nio.charset.CharacterCodingException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 /**
  * Brute force approach is we start at each element and iterate further to get all the
  * contiguous sub com.arrays it can make, keep storing the sum for all of them so we can ultimately
@@ -51,4 +57,5 @@ public class LargestSumContiguousArray {
         System.out.println("MaxSum = " + execute(null));
         System.out.println("MaxSum = " + execute(new int[]{}));
     }
+
 }

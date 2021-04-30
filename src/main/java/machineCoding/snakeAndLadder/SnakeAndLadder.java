@@ -6,8 +6,8 @@ import machineCoding.snakeAndLadder.strategy.DiceRolingStrategyImpl;
 public class SnakeAndLadder {
     public static void main(String[] args) {
         final DiceRolingStrategy diceRolingStrategy = new DiceRolingStrategyImpl();
-        final GameOrchestrator gameOrchestrator = new GameOrchestrator(diceRolingStrategy);
+//        final GameOrchestrator gameOrchestrator = new GameOrchestrator(diceRolingStrategy);
 
-        gameOrchestrator.start();
+//        gameOrchestrator.start();
     }
 }
